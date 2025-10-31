@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 16:32:20 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/10/31 19:20:31 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ class Vector
 		void	add( const Vector& other )
 		{
 			if (other.getSize() != this->getSize())
-				throw std::runtime_error("Vectors aren't the same size.");
+				throw std::runtime_error("Vectors have different dimensions");
 			auto oit = other.fields.begin();
 			for (auto it = fields.begin(); it != fields.end(); it++, oit++)
 				*it += *oit;
@@ -64,7 +64,7 @@ class Vector
 		void	sub( const Vector& other )
 		{
 			if (other.getSize() != this->getSize())
-				throw std::runtime_error("Vectors aren't the same size.");
+				throw std::runtime_error("Vectors have different dimensions");
 			auto oit = other.fields.begin();
 			for (auto it = fields.begin(); it != fields.end(); it++, oit++)
 				*it -= *oit;
@@ -73,6 +73,15 @@ class Vector
 		{
 			for (auto it = fields.begin(); it != fields.end(); it++)
 				*it *= scalar;
+		}
+		K		dot( const Vector& v )
+		{
+			if (this->getSize() != v.getSize())
+				throw std::runtime_error("Vectors have different dimensions");
+			K	result{};
+			for (size_t i = 0; i < this->getSize(); i++)
+				result = std::fma(this->fields[i], v[i], result);
+			return (result);
 		}
 		K&	operator[]( size_t index )
 		{
