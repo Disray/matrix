@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/29 12:44:07 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:32:20 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <cstddef>
 # include <stdexcept>
 # include <iomanip>
+# include <cmath>
 
 template<typename K>
 concept is_arithmetic = std::is_arithmetic_v<K>;
@@ -31,6 +32,10 @@ class Vector
 		std::vector<K>	fields;
 
 	public:
+		Vector( size_t n )
+		{
+			this->fields = std::vector<K>(n, K{});
+		}
 		Vector( std::initializer_list<K> values )
 		{
 			this->fields.assign(values.begin(), values.end());
@@ -42,6 +47,10 @@ class Vector
 		size_t	getSize() const
 		{
 			return (this->fields.size());
+		}
+		bool	empty() const
+		{
+			return (fields.empty());
 		}
 		
 		void	add( const Vector& other )
@@ -65,8 +74,19 @@ class Vector
 			for (auto it = fields.begin(); it != fields.end(); it++)
 				*it *= scalar;
 		}
-		
-		friend std::ostream& operator<<( std::ostream& os, const Vector& v )
+		K&	operator[]( size_t index )
+		{
+			if (index >= this->getSize())
+				throw std::runtime_error("Error: index out of bound.");
+			return (this->fields[index]);
+		}
+		const K&	operator[]( size_t index ) const
+		{
+			if (index >= this->getSize())
+				throw std::runtime_error("Error: index out of bound.");
+			return (this->fields[index]);
+		}
+		friend std::ostream&	operator<<( std::ostream& os, const Vector& v )
 		{
 			for (auto& k : v.fields)
 				os << std::fixed << std::setprecision(1) << "[" << k << "]" << std::endl;

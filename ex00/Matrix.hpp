@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/29 12:43:56 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:31:04 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ class Matrix
 		size_t			_cols;
 	
 	public:
+		Matrix( size_t rows, size_t cols )
+		{
+			this->elements = std::vector<K>((rows * cols), K{});
+			this->_rows = rows;
+			this->_cols = cols;
+		}
 		Matrix( std::initializer_list<std::initializer_list<K>> values )
 		{
 			if (values.size() == 0)
@@ -72,6 +78,39 @@ class Matrix
 				it *= scalar;
 		}
 		
+		size_t	getSize() const
+		{
+			return (this->_cols * this->_rows);
+		}
+		size_t	getRows() const
+		{
+			return (this->_rows);
+		}
+		size_t	getCols() const
+		{
+			return (this->_cols);
+		}
+		bool	hasSameDim( const Matrix& other ) const
+		{
+			return (this->_rows == other._rows && this->_cols == other._cols);
+		}
+		bool	empty() const
+		{
+			return (elements.empty());
+		}
+		K&	operator[]( size_t index )
+		{
+			if (index >= this->getSize())
+				throw std::runtime_error("Error: index out of bound.");
+			return (this->elements[index]);
+		}
+		const K&	operator[]( size_t index ) const
+		{
+			if (index >= this->getSize())
+				throw std::runtime_error("Error: index out of bound.");
+			return (this->elements[index]);
+		}
+
 		friend std::ostream& operator<<( std::ostream& os, const Matrix& m )
 		{
 			for (size_t i = 0; i < m.elements.size(); i++)
