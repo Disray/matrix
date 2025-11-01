@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/01 13:21:53 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:41:44 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Vector
 	public:
 		Vector( size_t n )
 		{
-			this->fields = std::vector<K>(n, K{});
+			this->fields = std::vector<K>(n, K(0));
 		}
 		Vector( std::initializer_list<K> values )
 		{
@@ -74,15 +74,16 @@ class Vector
 			for (auto it = fields.begin(); it != fields.end(); it++)
 				*it *= scalar;
 		}
-		K		dot( const Vector& v )
+		K		dot( const Vector& v ) const
 		{
 			if (this->getSize() != v.getSize())
 				throw std::runtime_error("Vectors have different dimensions");
-			K	result{};
+			K	result = K(0);
 			for (size_t i = 0; i < this->getSize(); i++)
 				result = std::fma(this->fields[i], v[i], result);
 			return (result);
 		}
+
 		K		norm_1() const
 		{
 			K	result = K(0);
@@ -108,6 +109,7 @@ class Vector
 				result = std::max(result, this->fields[i] < 0 ? -this->fields[i] : this->fields[i]);
 			return (result);
 		}
+
 		K&	operator[]( size_t index )
 		{
 			if (index >= this->getSize())
