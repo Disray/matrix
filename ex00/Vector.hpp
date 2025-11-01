@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 19:20:31 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/01 13:21:53 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,31 @@ class Vector
 			K	result{};
 			for (size_t i = 0; i < this->getSize(); i++)
 				result = std::fma(this->fields[i], v[i], result);
+			return (result);
+		}
+		K		norm_1() const
+		{
+			K	result = K(0);
+
+			for (size_t i = 0; i < this->getSize(); i++)
+				result += this->fields[i] < 0 ? -this->fields[i] : this->fields[i];
+			return (result);
+		}
+		K	norm() const
+		{
+			K	result = K(0);
+
+			for (size_t i = 0; i < this->getSize(); i++)
+				result = std::fma(this->fields[i], this->fields[i], result);
+			result = std::pow(result, K(0.5));
+			return (result);
+		}
+		K	norm_inf() const
+		{
+			K result = K(0);
+
+			for (size_t i = 0; i < this->getSize(); i++)
+				result = std::max(result, this->fields[i] < 0 ? -this->fields[i] : this->fields[i]);
 			return (result);
 		}
 		K&	operator[]( size_t index )
