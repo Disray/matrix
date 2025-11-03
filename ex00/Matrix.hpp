@@ -6,14 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 16:31:04 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:38:54 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX_HPP
-# define MATRIX_HPP
-
-# include "Vector.hpp"
+#pragma once
+#include "Vector.hpp"
 
 template<is_arithmetic K>
 class Matrix
@@ -98,6 +96,28 @@ class Matrix
 		{
 			return (elements.empty());
 		}
+
+		
+		K&	at( size_t	row, size_t col )
+		{
+			if (row >= _rows || col >= _cols)
+				throw std::out_of_range("Matrix::at: index out of range");
+			return (elements[row * _cols + col]);
+		}
+		const K&	at( size_t	row, size_t col ) const
+		{
+			if (row >= _rows || col >= _cols)
+				throw std::out_of_range("Matrix::at: index out of range");
+			return (elements[row * _cols + col]);
+		}
+		K&	operator()( size_t row, size_t col )
+		{
+			return (at(row, col));
+		}
+		const K&	operator()( size_t row, size_t col ) const
+		{
+			return (at(row, col));
+		}
 		K&	operator[]( size_t index )
 		{
 			if (index >= this->getSize())
@@ -125,6 +145,8 @@ class Matrix
 			}
 			return (os);
 		}
+		Vector<K>	mul_vec( const Vector<K>& vec ) const;
+		Matrix<K>	mul_mat( const Matrix<K>& mat ) const;
 };
 
-#endif // MATRIX_HPP
+#include "../ex07/Multiply.tpp"
