@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 13:17:33 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:47:13 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ class Vector
 		{
 			return (fields.empty());
 		}
-		
+
+		// ex00
 		void	add( const Vector& other )
 		{
 			if (other.getSize() != this->getSize())
@@ -76,31 +77,10 @@ class Vector
 		}
 		K		dot( const Vector<K>& v ) const;
 
-		K		norm_1() const
-		{
-			K	result = K(0);
-
-			for (size_t i = 0; i < this->getSize(); i++)
-				result += this->fields[i] < 0 ? -this->fields[i] : this->fields[i];
-			return (result);
-		}
-		K	norm() const
-		{
-			K	result = K(0);
-
-			for (size_t i = 0; i < this->getSize(); i++)
-				result = std::fma(this->fields[i], this->fields[i], result);
-			result = std::pow(result, K(0.5));
-			return (result);
-		}
-		K	norm_inf() const
-		{
-			K result = K(0);
-
-			for (size_t i = 0; i < this->getSize(); i++)
-				result = std::max(result, this->fields[i] < 0 ? -this->fields[i] : this->fields[i]);
-			return (result);
-		}
+		// ex04
+		K	norm_1() const;
+		K	norm() const;
+		K	norm_inf() const;
 
 		K&	operator[]( size_t index )
 		{
@@ -123,5 +103,6 @@ class Vector
 };
 
 #include "../ex03/Dot.tpp"
+#include "../ex04/Norm.tpp"
 
 #endif // VECTOR_HPP

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex01.cpp                                           :+:      :+:    :+:   */
+/*   Trace.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 15:28:32 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 14:43:40 by rrichard         ###   ########.fr       */
+/*   Created: 2025/11/03 14:49:14 by rrichard          #+#    #+#             */
+/*   Updated: 2025/11/03 18:38:07 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LinearCombination.tpp"
+#pragma once
 
-int	main( void )
+#include "../ex00/Matrix.hpp"
+
+template<is_arithmetic K>
+K	Matrix<K>::trace() const
 {
-	Vector e1({1., 0., 0.});
-	Vector e2({0., 1., 0.});
-	Vector e3({0., 0., 1.});
+	if (this->_rows != this->_cols)
+		throw std::runtime_error("Error: trace needs square matrix");
 
-	Vector v1({1., 2., 3.});
-	Vector v2({0., 10., -100.});
-	
-	std::vector<Vector<double>> u = {e1, e2, e3};
-	std::vector<double> coefs = {10., -2., 0.5};
+	K result = K(0);
 
-	std::cout << linear_combination(u, coefs);
-	std::cout << linear_combination({v1, v2}, {10., -2.});
+	for (size_t i = 0; i < this->_rows; i++)
+		result += this->at(i, i);
+	return (result);
 }

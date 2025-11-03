@@ -6,14 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:01 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 16:34:45 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:43:04 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LINEAR_COMBINATION_HPP
-# define LINEAR_COMBINATION_HPP
-
-# include "../ex00/Vector.hpp"
+#pragma once
+#include "../ex00/Vector.hpp"
 
 template<is_arithmetic K>
 Vector<K>	linear_combination( const std::vector<Vector<K>>& u, const std::vector<K>& coefs )
@@ -58,5 +56,3 @@ Vector<K>	linear_combination( std::initializer_list<Vector<K>> u, std::initializ
 			result[j] += (*coef_it) * (*u_it)[j];
 	return (result);
 }
-
-#endif // LINEAR_COMBINATION_HPP

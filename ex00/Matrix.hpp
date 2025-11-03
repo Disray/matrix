@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 13:38:54 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:50:35 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ class Matrix
 		}
 		Vector<K>	mul_vec( const Vector<K>& vec ) const;
 		Matrix<K>	mul_mat( const Matrix<K>& mat ) const;
+
+		K			trace() const;
 };
 
 #include "../ex07/Multiply.tpp"
+#include "../ex08/Trace.tpp"

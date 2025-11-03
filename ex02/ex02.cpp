@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:28:32 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 16:33:04 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:42:39 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linear_interpolation.hpp"
+#include "LinearInterpolation.tpp"
 
 int	main( void )
 {
