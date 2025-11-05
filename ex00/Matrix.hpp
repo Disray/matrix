@@ -6,12 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/04 10:11:14 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:26:52 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Vector.hpp"
+#include <sstream>
 
 template<is_arithmetic K>
 class Matrix
@@ -24,7 +25,7 @@ class Matrix
 	public:
 		Matrix( size_t rows, size_t cols )
 		{
-			this->elements = std::vector<K>((rows * cols), K{});
+			this->elements = std::vector<K>((rows * cols), K(0));
 			this->_rows = rows;
 			this->_cols = cols;
 		}
@@ -100,15 +101,78 @@ class Matrix
 		
 		K&	at( size_t	row, size_t col )
 		{
-			if (row >= _rows || col >= _cols)
-				throw std::out_of_range("Matrix::at: index out of range");
+			if (row >= _rows)
+			{
+				std::stringstream ss;
+				ss << row;
+				throw std::out_of_range("Matrix::at row: " + std::string(ss.str()) + " index out of range: ");
+			}
+			else if (col >= _cols)
+			{
+				std::stringstream ss;
+				ss << col;
+				throw std::out_of_range("Matrix::at col: " + std::string(ss.str()) + " index out of range: ");
+			}
 			return (elements[row * _cols + col]);
 		}
 		const K&	at( size_t	row, size_t col ) const
 		{
-			if (row >= _rows || col >= _cols)
-				throw std::out_of_range("Matrix::at: index out of range");
+			if (row >= _rows)
+			{
+				std::stringstream ss;
+				ss << row;
+				throw std::out_of_range("Matrix::at: " + std::string(ss.str()) + " index out of range: ");
+			}
+			else if (col >= _cols)
+			{
+				std::stringstream ss;
+				ss << col;
+				throw std::out_of_range("Matrix::at: " + std::string(ss.str()) + " index out of range: ");
+			}
 			return (elements[row * _cols + col]);
+		}
+		K&	findValueMaxAbsColumn( size_t col )
+		{
+			K	maxAbsValue = K(0);
+			
+			for (size_t i = 0; i < _rows; i++)
+			{
+				K currentAbsValue = this->at(i, col) < 0 ? -this->at(i, col) : this->at(i, col);
+				
+				if (currentAbsValue > maxAbsValue)
+					maxAbsValue = currentAbsValue;
+			}
+			return (maxAbsValue);
+		}
+		const K&	findValueMaxAbsColumn( size_t col ) const
+		{
+			K	maxAbsValue = K(0);
+			
+			for (size_t i = 0; i < _rows; i++)
+			{
+				K currentAbsValue = this->at(i, col) < 0 ? -this->at(i, col) : this->at(i, col);
+				
+				if (currentAbsValue > maxAbsValue)
+					maxAbsValue = currentAbsValue;
+			}
+			return (maxAbsValue);
+		}
+		size_t	findIndexMaxAbsColumn( size_t col, size_t start_row )
+		{
+			K		maxAbsValue = K(0);
+			size_t	index = -1;
+			
+			for (size_t i = start_row; i < _rows; i++)
+			{
+				K currentAbsValue = this->at(i, col) < 0 ? -this->at(i, col) : this->at(i, col);
+				
+				if (currentAbsValue > maxAbsValue)
+				{
+					maxAbsValue = currentAbsValue;
+					index = i;
+				}
+			}
+			return (index);
 		}
 		K&	operator()( size_t row, size_t col )
 		{
@@ -137,7 +201,7 @@ class Matrix
 			{
 				if (i % m._cols == 0)
 					os << "[";
-				os << std::fixed << std::setprecision(1) << m.elements[i];
+				os << m.elements[i];
 				if (i % m._cols == m._cols - 1)
 					os << "]" << std::endl;
 				else
@@ -145,14 +209,19 @@ class Matrix
 			}
 			return (os);
 		}
+		// ex07
 		Vector<K>	mul_vec( const Vector<K>& vec ) const;
 		Matrix<K>	mul_mat( const Matrix<K>& mat ) const;
-
+		// ex08
 		K			trace() const;
-		
+		// ex09
 		Matrix<K>	transpose() const;
+		// ex10
+		Matrix<K>	row_echelon();
+		void		swap_rows( size_t, size_t );
 };
 
 #include "../ex07/Multiply.tpp"
 #include "../ex08/Trace.tpp"
 #include "../ex09/Transpose.tpp"
+#include "../ex10/RowEchelon.tpp"
