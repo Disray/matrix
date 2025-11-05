@@ -6,13 +6,14 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/05 16:05:27 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:44:06 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Vector.hpp"
 #include <sstream>
+#include <expected>
 
 template<is_arithmetic K>
 class Matrix
@@ -221,6 +222,8 @@ class Matrix
 		void		swap_rows( size_t, size_t );
 		// ex11
 		K			determinant();
+		// ex12
+		std::expected<Matrix<K>, std::string>	inverse() const;
 };
 
 #include "../ex07/Multiply.tpp"
@@ -228,3 +231,4 @@ class Matrix
 #include "../ex09/Transpose.tpp"
 #include "../ex10/RowEchelon.tpp"
 #include "../ex11/Determinant.tpp"
+#include "../ex12/Inverse.tpp"

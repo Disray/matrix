@@ -5,7 +5,7 @@
 NAME = ex10
 CC = c++
 
-CFLAGS = -Werror -Wall -Wextra -std=c++20
+CFLAGS = -Werror -Wall -Wextra -std=c++23
 
 SRCS_PATH = ./
 OBJS_PATH = .obj/
