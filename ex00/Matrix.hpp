@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/05 14:26:52 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:05:27 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,9 +219,12 @@ class Matrix
 		// ex10
 		Matrix<K>	row_echelon();
 		void		swap_rows( size_t, size_t );
+		// ex11
+		K			determinant();
 };
 
 #include "../ex07/Multiply.tpp"
 #include "../ex08/Trace.tpp"
 #include "../ex09/Transpose.tpp"
 #include "../ex10/RowEchelon.tpp"
+#include "../ex11/Determinant.tpp"
