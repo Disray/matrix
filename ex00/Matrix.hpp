@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/06 14:46:50 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:41:22 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,8 @@ class Matrix
 		// ex12
 		std::expected<Matrix<K>, std::string>	inverse() const;
 		Matrix<K>	identity();
+		// ex13
+		size_t		rank();
 };
 
 #include "../ex07/Multiply.tpp"
@@ -238,3 +240,4 @@ class Matrix
 #include "../ex10/RowEchelon.tpp"
 #include "../ex11/Determinant.tpp"
 #include "../ex12/Inverse.tpp"
+#include "../ex13/Rank.tpp"
