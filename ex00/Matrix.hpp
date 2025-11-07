@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/05 18:44:06 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:46:50 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,11 @@ class Matrix
 			
 			for (size_t i = start_row; i < _rows; i++)
 			{
-				K currentAbsValue = this->at(i, col) < 0 ? -this->at(i, col) : this->at(i, col);
+				K	x = this->at(i, col);
+				K	currentAbsValue = (x < K(0)) ? -x : x;
 				
+				if (currentAbsValue == K(0))
+					currentAbsValue = K(0);
 				if (currentAbsValue > maxAbsValue)
 				{
 					maxAbsValue = currentAbsValue;
@@ -220,10 +223,13 @@ class Matrix
 		// ex10
 		Matrix<K>	row_echelon();
 		void		swap_rows( size_t, size_t );
+		void		scale_row( size_t, K );
+		void		add_row_multiple( size_t, size_t, K );
 		// ex11
 		K			determinant();
 		// ex12
 		std::expected<Matrix<K>, std::string>	inverse() const;
+		Matrix<K>	identity();
 };
 
 #include "../ex07/Multiply.tpp"

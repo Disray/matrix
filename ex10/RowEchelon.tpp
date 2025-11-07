@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:13:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/05 14:23:34 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/06 15:12:31 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 template<is_arithmetic K>
 Matrix<K>	Matrix<K>::row_echelon()
 {
-	Matrix<K>	result = *this;
-	size_t		row = 0, col = 0, i_max;
+	Matrix<K>			result = *this;
+	size_t				row = 0, col = 0, i_max;
 	std::vector<size_t>	pivot_col;
 
-	while (row < _rows && col < _cols)
+	while (row < result._rows && col < result._cols)
 	{
 		i_max = result.findIndexMaxAbsColumn(col, row);
 		if (i_max == size_t(-1))
@@ -28,18 +28,13 @@ Matrix<K>	Matrix<K>::row_echelon()
 		else
 		{
 			result.swap_rows(row, i_max);
-			K pivot = result(row, col);
-			for (size_t j = col; j < this->_cols; j++)
-				result(row, j) /= pivot;
+			K	pivot = result(row, col);
+			result.scale_row(row, K(1) / pivot);
 			pivot_col.push_back(col);
-			for (size_t i = row + 1; i < this->_rows; ++i)
+			for (size_t i = row + 1; i < result._rows; ++i)
 			{
-				K scale = result(i, col);
-				result(i, col) = K(0);
-				for (size_t j = col + 1; j < this->_cols; j++)
-				{
-					result(i, j) = result(i, j) - (result(row, j) * scale);
-				}
+				K	scale = result(i, col);
+				result.add_row_multiple(i, row, scale);
 			}
 			col++;
 			row++;
@@ -50,9 +45,8 @@ Matrix<K>	Matrix<K>::row_echelon()
 		size_t	c = pivot_col[r];
 		for (size_t i = 0; i < r; i++)
 		{
-			K factor = result(i, c);
-			for (size_t j = c; j < _cols; j++)
-				result(i, j) -= factor * result(r, j);
+			K	scale = result(i, c);
+			result.add_row_multiple(i, r, scale);
 		}
 	}
 	return (result);
@@ -65,5 +59,26 @@ void	Matrix<K>::swap_rows( size_t row1, size_t row2 )
 		return ;
 
 	for (size_t j = 0; j < _cols; j++)
-		std::swap(elements[row1 * _cols + j], elements[row2 * _cols + j]);
+		std::swap(this->at(row1, j), this->at(row2, j));
+}
+
+template<is_arithmetic K>
+void	Matrix<K>::scale_row( size_t row, K scale )
+{
+	for (size_t i = 0; i < this->_cols; i++)
+	{
+		if (this->at(row, i) == K(0))
+			continue ;		
+		this->at(row, i) *= scale;
+	}
+}
+
+template<is_arithmetic K>
+void	Matrix<K>::add_row_multiple( size_t dest, size_t source, K k )
+{
+	if (k == K(0))
+		return ;
+
+	for (size_t i = 0; i < this->_cols; i++)
+		this->at(dest, i) -= this->at(source, i) * k;
 }
