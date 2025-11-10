@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 10:46:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/08 11:01:13 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:27:08 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,23 @@
 
 Matrix<float>	projection(  float fov, float ratio, float near, float far )
 {
-	const float 	DEG2RAD = acos(-1.0f / 180);
-	float			tangent = tan(fov / 2 * DEG2RAD);
-	float			top = near * tangent;
-	float			right = top * ratio;
+	// const float 	DEG2RAD = M_PI / 180;
+	// float			tangent = tan(fov / 2 * DEG2RAD);
+	// float			top = near * tangent;
+	// float			right = top * ratio;
 
 	Matrix<float>	matrix(4, 4);
 
-	matrix[0] = near / right;
-	matrix[5] = near / top;
-	matrix[10] = -(far + near) / (far - near);
-	matrix[11] = -1.0f;
-	matrix[14] = -(2.0f * far * near) / (far - near);
-	matrix[15] = 0;
+	// matrix[0] = near / right;
+	matrix(0, 0) = (1 / tan(fov / 2)) / ratio;
+	matrix(1, 1) = 1 / (tan(fov / 2));
+	// matrix[5] = near / top;
+	// matrix[10] = far / (far - near);
+	matrix(2, 2) = far / (near - far);
+	matrix(2, 3) = -1.0f;
+	// matrix[11] = 1.0f;
+	matrix(3, 2) = near * far / (near - far);
+	matrix(3, 3) = 0;
 	return (matrix);
 }
 
@@ -56,7 +60,7 @@ int	main( int argc, char **argv )
 		{
 			ofs << result(i, j);
 			if (j + 1 < result.getCols())
-				ofs << " ";
+				ofs << ", ";
 		}
 		ofs << std::endl;
 	}
