@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:46:22 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/01 19:38:36 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 
 template<is_arithmetic K>
 Vector<K>	cross_product( const Vector<K>& u, const Vector<K>& v )

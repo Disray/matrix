@@ -6,13 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:05:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:20:03 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:38:34 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../Matrix.hpp"
-
 
 template<is_arithmetic K>
 void	Matrix<K>::add( const Matrix<K>& m )

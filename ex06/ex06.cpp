@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/01 19:40:23 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 #include "CrossProduct.tpp"
 
 int	main( void )

@@ -6,13 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 19:47:19 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:02:54 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../Matrix.hpp"
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 
 template<is_arithmetic K>
 Vector<K>	Matrix<K>::mul_vec( const Vector<K>& vec ) const

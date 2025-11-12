@@ -6,13 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:44:05 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 14:45:42 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 
 template<is_arithmetic K>
 K	Vector<K>::norm_1() const

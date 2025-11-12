@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linear_combination.hpp                             :+:      :+:    :+:   */
+/*   LinearCombination.tpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:01 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 14:43:04 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 
 template<is_arithmetic K>
 Vector<K>	linear_combination( const std::vector<Vector<K>>& u, const std::vector<K>& coefs )

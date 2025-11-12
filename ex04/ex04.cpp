@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/01 13:22:14 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:11:45 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ex00/Vector.hpp"
+#include "../Vector.hpp"
 
 int	main( void )
 {

@@ -6,11 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:18:21 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:15:58 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:40:00 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AddSubScl.tpp"
+#include "VAddSubScl.tpp"
+#include "MAddSubScl.tpp"
 
 int main( void )
 {

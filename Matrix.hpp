@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:09:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:39:21 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "./ex00/Vector.hpp"
+#include "Vector.hpp"
 #include <sstream>
 #include <expected>
 
@@ -49,8 +49,8 @@ class Matrix
 		friend std::ostream&	operator<<( std::ostream& os, const Matrix<T>& m );
 
 		// ex00
-		void					add( const Matrix& m );
-		void					sub( const Matrix& m );
+		void					add( const Matrix<K>& m );
+		void					sub( const Matrix<K>& m );
 		void					scl( const K& scalar );
 		// ex07
 		Vector<K>				mul_vec( const Vector<K>& vec ) const;
@@ -75,7 +75,7 @@ class Matrix
 };
 
 #include "Matrix.tpp"
-#include "./ex00/AddSubScl.tpp"
+#include "./ex00/MAddSubScl.tpp"
 #include "./ex07/Multiply.tpp"
 #include "./ex08/Trace.tpp"
 #include "./ex09/Transpose.tpp"

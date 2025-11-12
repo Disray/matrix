@@ -6,13 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:50:36 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include "../ex00/Vector.hpp"
+# include "../Vector.hpp"
 # include "../Matrix.hpp"
 
 template<is_arithmetic K>
