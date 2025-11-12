@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:04:07 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/05 18:04:12 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 
 template<is_arithmetic K>
 K	Matrix<K>::determinant()

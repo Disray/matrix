@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linear_interpolation.hpp                           :+:      :+:    :+:   */
+/*   LinearInterpolation.tpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:50:36 by rrichard          #+#    #+#             */
-/*   Updated: 2025/10/31 16:32:56 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 # include "../ex00/Vector.hpp"
-# include "../ex00/Matrix.hpp"
+# include "../Matrix.hpp"
 
 template<is_arithmetic K>
 K lerp( const K& a, const K& b, const K& t)

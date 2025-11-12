@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:33:59 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/07 11:42:14 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 
 template<is_arithmetic K>
 size_t	Matrix<K>::rank()

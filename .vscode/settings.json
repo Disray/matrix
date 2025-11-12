@@ -59,5 +59,12 @@
 		"text_encoding": "cpp",
 		"thread": "cpp",
 		"expected": "cpp"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 10:46:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/10 10:27:08 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 #include <fstream>
 
 Matrix<float>	projection(  float fov, float ratio, float near, float far )
@@ -20,7 +20,7 @@ Matrix<float>	projection(  float fov, float ratio, float near, float far )
 	// float			top = near * tangent;
 	// float			right = top * ratio;
 
-	Matrix<float>	matrix(4, 4);
+	Matrix<float>	matrix(4);
 
 	// matrix[0] = near / right;
 	matrix(0, 0) = (1 / tan(fov / 2)) / ratio;

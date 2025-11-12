@@ -2,23 +2,13 @@
 #                                   VARIABLES                                  #
 ################################################################################
 
-NAME = ex12
-CC = c++
+CXX			:= c++
+CXXFLAGS	:= -Werror -Wall -Wextra -std=c++23
 
-CFLAGS = -Werror -Wall -Wextra -std=c++23
+BIN_DIR		:= bin
+OBJ_DIR		:= .obj
 
-SRCS_PATH = ./
-OBJS_PATH = .obj/
-
-# Source files and obj files
-SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
-OBJS = $(SRCS:$(SRCS_PATH)%.cpp=$(OBJS_PATH)%.o)
-
-################################################################################
-#                                   SRCS_FILES                                 #
-################################################################################
-
-SRCS_FILES =	ex12.cpp \
+EX_DIRS		:= $(patsubst %/,%,$(filter ex%/,$(wildcard ex*/)))
 
 ################################################################################
 #                                    COlORS                                    #
@@ -56,23 +46,51 @@ COM_STRING   = "Compiling"
 #                                   COMMANDS                                   #
 ################################################################################
 
-all: $(OBJS_PATH) $(NAME)
+all: $(EX_DIRS)
 
-$(OBJS_PATH):
-	@mkdir -p $(OBJS_PATH)
+define GEN_RULES
+SRCS_$(1) := $(wildcard $(1)/*.cpp)
+OBJS_$(1) := $$(patsubst $(1)/%.cpp, $(OBJ_DIR)/$(1)/%.o, $$(SRCS_$(1)))
 
-$(NAME): $(OBJS_PATH) $(OBJS)
-	@$(call run_and_test, $(CC) $(CFLAGS) -o $@ $(OBJS))
+$(1): $(BIN_DIR)/$(1)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.cpp
-	@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
+# Link with colors
+$(BIN_DIR)/$(1): COM_STRING = Linking
+$(BIN_DIR)/$(1): $$(OBJS_$(1)) | $(BIN_DIR)
+	@$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -o $$@ $$^)
 
+# Compile with colors
+$(OBJ_DIR)/$(1)/%.o: COM_STRING = Compiling
+$(OBJ_DIR)/$(1)/%.o: $(1)/%.cpp | $(OBJ_DIR)/$(1)
+	 @$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -c $$< -o $$@)
+
+$(OBJ_DIR)/$(1):
+	@mkdir -p $$@
+
+run-$(1): $(1)
+	@./$(BIN_DIR)/$(1)
+endef
+
+$(foreach d,$(EX_DIRS),$(eval $(call GEN_RULES,$(d))))
+
+$(BIN_DIR):
+	@mkdir -p $@
+
+clean: COM_STRING = Cleaning
 clean:
-	@$(call run_and_test, rm -rf $(OBJS_PATH))
+	@$(call run_and_test,rm -rf $(OBJ_DIR))
 
+
+fclean: COM_STRING = Cleaning
 fclean: clean
-	@$(call run_and_test, rm -f $(NAME))
+	@$(call run_and_test,rm -rf $(BIN_DIR))
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re help $(EX_DIRS) $(addprefix run-,$(EX_DIRS))
+# help:
+#     @echo "Usage:"
+#     @echo "  make ex00       - build ex00 -> bin/ex00"
+#     @echo "  make run-ex00   - build and run ex00"
+#     @echo "  make all        - build all ex*/"
+#     @echo "  make clean|fclean|re"

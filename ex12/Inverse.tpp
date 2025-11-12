@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:33:25 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/06 15:10:11 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 
 template<is_arithmetic K>
 std::expected<Matrix<K>, std::string>	Matrix<K>::inverse() const

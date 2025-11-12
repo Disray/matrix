@@ -6,13 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:49:14 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 18:38:07 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 
 template<is_arithmetic K>
 K	Matrix<K>::trace() const

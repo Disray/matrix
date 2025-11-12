@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:13:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/06 15:12:31 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../ex00/Matrix.hpp"
+#include "../Matrix.hpp"
 
 template<is_arithmetic K>
 Matrix<K>	Matrix<K>::row_echelon()
@@ -81,4 +81,26 @@ void	Matrix<K>::add_row_multiple( size_t dest, size_t source, K k )
 
 	for (size_t i = 0; i < this->_cols; i++)
 		this->at(dest, i) -= this->at(source, i) * k;
+}
+
+template<is_arithmetic K>
+size_t	Matrix<K>::findIndexMaxAbsColumn( size_t col, size_t start_row )
+{
+	K		maxAbsValue = K(0);
+	size_t	index = -1;
+	
+	for (size_t i = start_row; i < _rows; i++)
+	{
+		K	x = this->at(i, col);
+		K	currentAbsValue = (x < K(0)) ? -x : x;
+		
+		if (currentAbsValue == K(0))
+			currentAbsValue = K(0);
+		if (currentAbsValue > maxAbsValue)
+		{
+			maxAbsValue = currentAbsValue;
+			index = i;
+		}
+	}
+	return (index);
 }
