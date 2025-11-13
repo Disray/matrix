@@ -58,7 +58,8 @@
 		"stop_token": "cpp",
 		"text_encoding": "cpp",
 		"thread": "cpp",
-		"expected": "cpp"
+		"expected": "cpp",
+		"complex": "cpp"
 	},
 	"files.exclude": {
 		"**/.git": true,

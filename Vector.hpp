@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 18:32:06 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:14:19 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ class Vector
 		K						dot( const Vector<K>& v ) const;
 
 		// ex04
-		K						norm_1() const;
-		K						norm() const;
-		K						norm_inf() const;
+		double					norm_1() const;
+		double					norm() const;
+		double					norm_inf() const;
 };
 
 #include "Vector.tpp"
