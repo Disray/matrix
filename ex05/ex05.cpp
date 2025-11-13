@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:34:21 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ int	main( void )
 	
 	Vector<double>	u({1., 2., 3.}), v({4., 5., 6.});
 	std::cout << angle_cos(u, v) << std::endl;
+
+	Vector<std::complex<double>>	uz({{1., 2.}, {-2., -5}, {3., -4}});
+	Vector<std::complex<double>>	vz({{4., 2.}, {5., -1.}, {-5., 0.}});
+	std::cout << angle_cos(uz, vz) << std::endl;
 	return (0);
 }
