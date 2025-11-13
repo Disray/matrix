@@ -6,13 +6,19 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:01 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 20:42:05 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../Vector.hpp"
 
+/**
+ * @brief Calcule la combinaison linéaire Σ_i coefs[i] * u[i].
+ * @param u Vecteurs (tous de même taille).
+ * @param coefs Coefficients (même taille que u).
+ * @return Un vecteur tel que result[j] = Σ_i coefs[i] * u[i][j].
+ */
 template<is_arithmetic K>
 Vector<K>	linear_combination( const std::vector<Vector<K>>& u, const std::vector<K>& coefs )
 {
@@ -34,6 +40,9 @@ Vector<K>	linear_combination( const std::vector<Vector<K>>& u, const std::vector
 	return (result);
 }
 
+ /**
+  * @brief Variante avec std::initializer_list (mêmes préconditions).
+  */
 template<is_arithmetic K>
 Vector<K>	linear_combination( std::initializer_list<Vector<K>> u, std::initializer_list<K> coefs )
 {

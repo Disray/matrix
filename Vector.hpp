@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:39:02 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:32:06 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,16 @@
 # include <stdexcept>
 # include <iomanip>
 # include <cmath>
+# include <complex>
+
+template<typename T>
+struct is_std_complex : std::false_type {};
+ 
+template<typename T>
+struct is_std_complex<std::complex<T>> : std::true_type {};
 
 template<typename K>
-concept is_arithmetic = std::is_arithmetic_v<K>;
+concept is_arithmetic = std::is_arithmetic_v<K> || is_std_complex<K>::value;
 
 template<is_arithmetic K>
 class Vector

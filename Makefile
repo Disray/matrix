@@ -62,13 +62,23 @@ $(BIN_DIR)/$(1): $$(OBJS_$(1)) | $(BIN_DIR)
 # Compile with colors
 $(OBJ_DIR)/$(1)/%.o: COM_STRING = Compiling
 $(OBJ_DIR)/$(1)/%.o: $(1)/%.cpp | $(OBJ_DIR)/$(1)
-	 @$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -c $$< -o $$@)
+	@$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -c $$< -o $$@)
 
 $(OBJ_DIR)/$(1):
 	@mkdir -p $$@
 
 run-$(1): $(1)
 	@./$(BIN_DIR)/$(1)
+
+clean-$(1): COM_STRING = Cleaning
+clean-$(1):
+	@$$(call run_and_test,rm -rf $(OBJ_DIR)/$(1))
+
+fclean-$(1): COM_STRING = Cleaning
+fclean-$(1): clean-$(1)
+	@$$(call run_and_test,rm -f $(BIN_DIR)/$(1))
+
+re-$(1): fclean-$(1) $(1)
 endef
 
 $(foreach d,$(EX_DIRS),$(eval $(call GEN_RULES,$(d))))
@@ -87,10 +97,16 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re help $(EX_DIRS) $(addprefix run-,$(EX_DIRS))
-# help:
-#     @echo "Usage:"
-#     @echo "  make ex00       - build ex00 -> bin/ex00"
-#     @echo "  make run-ex00   - build and run ex00"
-#     @echo "  make all        - build all ex*/"
-#     @echo "  make clean|fclean|re"
+.PHONY: all clean fclean re help \
+		$(EX_DIRS) \
+		$(addprefix run-,$(EX_DIRS)) \
+		$(addprefix clean-,$(EX_DIRS)) \
+		$(addprefix fclean-,$(EX_DIRS)) \
+		$(addprefix re-,$(EX_DIRS))
+
+help:
+	@echo "Usage:"
+	@echo "  make ex00       - build ex00 -> bin/ex00"
+	@echo "  make run-ex00   - build and run ex00"
+	@echo "  make all        - build all ex*/"
+	@echo "  make clean|fclean|re"
