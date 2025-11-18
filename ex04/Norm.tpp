@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:44:05 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/13 17:27:07 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:01:21 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,10 @@
 
 #include "../Vector.hpp"
 
-/**
- * @brief Module d'un nombre complexe.
- * Calcule |z| = sqrt(Re(z)^2 + Im(z)^2).
- * @tparam K Type réel sous-jacent (float, double, ...).
- * @param z Nombre complexe.
- * @return double (réel ≥ 0).
- * @complexity O(1).
- */
-template<is_arithmetic K>
-double	complex_absolute( const std::complex<K>& z )
+double	complex_absolute( const Complex& z )
 {
-	double	real_sq = z.real() * z.real();
-	double	imag_sq = z.imag() * z.imag();
+	double	real_sq = z.Re * z.Re;
+	double	imag_sq = z.Im * z.Im;
 
 	return (std::pow(real_sq + imag_sq, 0.5));
 }

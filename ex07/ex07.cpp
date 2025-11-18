@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:47:57 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/03 14:38:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:57:09 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,13 @@ int main( void )
                         {6., 5., 4.},
                         {3., 2., 1.} }};
     std::cout << "A3 * B3 =\n" << A3.mul_mat(B3) << std::endl;
+	
+	Matrix<Complex>	A4({ {{1, 2}, {-1, -2}, {0, 3}},
+						 {{2, -1}, {2, 1}, {1, -4}},
+						 {{-5, 1}, {1.5, 0}, {-3.2, 1}} });
+	Vector<Complex> V5({ {1., 5.}, {-1.2, 3.5}, {1, 0}});
+	std::cout << "A4 * V5 =\n" << A4.mul_vec(V5) << std::endl;
+	Matrix<Complex>	copy = A4;
+	std::cout << "A4 * copy = \n" << A4.mul_mat(copy) << std::endl;
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:28:32 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/13 13:46:48 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:04:24 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main( void )
 {
 	std::cout << "[Scalar int]    lerp(0, 10, 0.25f) = " << lerp(0, 10, 0.25f) << std::endl;
 	std::cout << "[Scalar float]  lerp(0.f, 1.f, 0.5f) = " << lerp(0.f, 1.f, 0.5f) << std::endl;
-	std::complex<double> ca{1.0, 2.0}, cb{3.0, -1.0};
+	Complex ca{1.0, 2.0}, cb{3.0, -1.0};
 	std::cout << "[Scalar complex] lerp((1+2i),(3-1i), 0.25f) = " << lerp(ca, cb, 0.25f) << std::endl << std::endl;
 
 	std::cout << "[Vector int]" << std::endl;
@@ -26,8 +26,8 @@ int main( void )
 	std::cout << lerp(Vector<float>({2.f, 1.f}), Vector<float>({4.f, 2.f}), 0.3f) << '\n';
 
 	std::cout << "[Vector complex]" << std::endl;
-	Vector<std::complex<double>> vu1{{3., 1.}, {4., 2.}};
-	Vector<std::complex<double>> vu2{{1., 2.}, {-1., -2.}};
+	Vector<Complex> vu1{{3., 1.}, {4., 2.}};
+	Vector<Complex> vu2{{1., 2.}, {-1., -2.}};
 	std::cout << lerp(vu1, vu2, 0.5f) << std::endl << std::endl;
 
 	std::cout << "[Matrix int]" << std::endl;
@@ -43,11 +43,11 @@ int main( void )
 		0.5f) << std::endl;
 
 	std::cout << "[Matrix complex]" << std::endl;
-	Matrix<std::complex<double>> mcA({
+	Matrix<Complex> mcA({
 		{ {1., 1.}, {2., -1.} },
 		{ {0., 2.}, {3.,  0.} }
 	});
-	Matrix<std::complex<double>> mcB({
+	Matrix<Complex> mcB({
 		{ {3., -2.}, {0., 1.} },
 		{ {1.,  0.}, {-1., 4.} }
 	});

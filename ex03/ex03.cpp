@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/13 14:01:35 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:04:31 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main( void )
 	Vector<float>	u2({-1.0f, 6.0f}), v2({3.0f, 2.0f});
 	std::cout << std::fixed << u2.dot(v2) << std::endl;
 
-	Vector<std::complex<int>> u3({
+	Vector<Complex> u3({
 		{0, 1}, {2, -1}
 	});
-	Vector<std::complex<int>> u4({
+	Vector<Complex> u4({
 		{2, 3}, {1, -5}
 	});
 	std::cout << u3.dot(u4) << std::endl;

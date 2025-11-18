@@ -6,11 +6,10 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:21:39 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Vector.hpp"
 #include "CrossProduct.tpp"
 
 int	main( void )
@@ -26,7 +25,15 @@ int	main( void )
 		std::cout << cross_product(a2, b2) << std::endl;
 	
 		Vector<double> a3({4., 2., -3.}), b3({-2., -5., 16.});
-		std::cout << cross_product(a3, b3);
+		std::cout << cross_product(a3, b3) << std::endl;
+
+		Vector<Complex>	u({
+			{1, 2}, {-1, 1}, {3, 3}
+		});
+		Vector<Complex>	v({
+			{2, 1}, {3, -4}, {-2, -5}
+		});
+		std::cout << cross_product(u, v) << std::endl;
 	}
 	catch (std::exception &e)
 	{

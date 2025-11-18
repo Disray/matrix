@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 19:47:19 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:12:26 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:23:11 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ Vector<K>	Matrix<K>::mul_vec( const Vector<K>& vec ) const
 		K	sum = K(0);
 
 		for (size_t j = 0; j < this->_cols; j++)
-			sum = std::fma(this->operator()(i, j), vec[j], sum);
+		{
+			if constexpr (std::is_arithmetic_v<K>)
+				sum = std::fma(this->at(i, j), vec[j], sum);
+			else
+				sum += this->at(i, j) * vec[j];
+		}
 		result[i] = sum;
 	}
 	return (result);
@@ -48,7 +53,12 @@ Matrix<K>	Matrix<K>::mul_mat( const Matrix<K>& mat ) const
 			K sum = K(0);
 
 			for (size_t h = 0; h < mat.getRows(); h++)
-				sum = std::fma(this->operator()(i, h), mat(h, j), sum);
+			{
+				if constexpr (std::is_arithmetic_v<K>)
+					sum = std::fma(this->at(i, h), mat(h, j), sum);
+				else
+					sum += this->at(i, h) * mat(h, j);
+			}
 			result(i, j) = sum;
 		}
 	}

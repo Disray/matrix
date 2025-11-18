@@ -6,12 +6,41 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:13:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:23:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../Matrix.hpp"
+#include "../ex05/AngleCos.tpp"
+#include "../ex04/Norm.tpp"
+
+double	scalar_norm2( const double& x )
+{
+	return (x * x);
+}
+
+double	scalar_norm2( const float& x )
+{
+	return (x * x);
+}
+
+double	scalar_norm2( const Complex& z )
+{
+	return (z.Re * z.Re + z.Im * z.Im);
+}
+
+template<typename K>
+double	scalar_norm2( const K& x )
+{
+	return (static_cast<double>(x) * static_cast<double>(x));
+}
+
+template<typename K>
+bool	scalar_is_zero( const K& x, double eps = 1e-9 )
+{
+	return (scalar_norm2(x) < eps * eps);
+}
 
 template<is_arithmetic K>
 Matrix<K>	Matrix<K>::row_echelon()
@@ -66,19 +95,12 @@ template<is_arithmetic K>
 void	Matrix<K>::scale_row( size_t row, K scale )
 {
 	for (size_t i = 0; i < this->_cols; i++)
-	{
-		if (this->at(row, i) == K(0))
-			continue ;		
 		this->at(row, i) *= scale;
-	}
 }
 
 template<is_arithmetic K>
 void	Matrix<K>::add_row_multiple( size_t dest, size_t source, K k )
 {
-	if (k == K(0))
-		return ;
-
 	for (size_t i = 0; i < this->_cols; i++)
 		this->at(dest, i) -= this->at(source, i) * k;
 }
@@ -86,21 +108,21 @@ void	Matrix<K>::add_row_multiple( size_t dest, size_t source, K k )
 template<is_arithmetic K>
 size_t	Matrix<K>::findIndexMaxAbsColumn( size_t col, size_t start_row )
 {
-	K		maxAbsValue = K(0);
-	size_t	index = -1;
-	
+	double	bestNorm2 = 0.0;
+	size_t	bestIndex = size_t(-1);
+	double	eps = 1e-9;
+
 	for (size_t i = start_row; i < _rows; i++)
 	{
-		K	x = this->at(i, col);
-		K	currentAbsValue = (x < K(0)) ? -x : x;
-		
-		if (currentAbsValue == K(0))
-			currentAbsValue = K(0);
-		if (currentAbsValue > maxAbsValue)
+		double n2 = scalar_norm2(this->at(i, col));
+		if (n2 > bestNorm2)
 		{
-			maxAbsValue = currentAbsValue;
-			index = i;
+			bestNorm2 = n2;
+			bestIndex = i;
 		}
 	}
-	return (index);
+
+	if (bestNorm2 < eps * eps)
+		return (size_t(-1));
+	return (bestIndex);
 }

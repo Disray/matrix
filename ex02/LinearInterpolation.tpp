@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:50:36 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/13 13:56:49 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:04:24 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param b Valeur d'arrivée.
  * @param t Facteur (0 => a, 1 => b).
  * @return Valeur interpolée. Type: std::common_type_t<K, double>
- *         (ex: int -> double, float -> double, std::complex<double> -> std::complex<double>).
+ *         (ex: int -> double, float -> double, Complex -> Complex).
  */
 template<is_arithmetic K>
 auto	lerp( K a, K b, double t )

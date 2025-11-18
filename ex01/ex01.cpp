@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:28:32 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 20:31:37 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:04:24 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main( void )
 	Vector v1({1., 2., 3.});
 	Vector v2({0., 10., -100.});
 
-	Vector<std::complex<double>> u1{{1., 2.}, {0., 1.}, {-2., 0.}};
-	Vector<std::complex<double>> u2{{0., 1.}, {-1., -2.}, {-1., -4.}};
-	Vector<std::complex<double>> u3{{5., 2.}, {3., -1.}, {2., 1.}};
+	Vector<Complex> u1{{1., 2.}, {0., 1.}, {-2., 0.}};
+	Vector<Complex> u2{{0., 1.}, {-1., -2.}, {-1., -4.}};
+	Vector<Complex> u3{{5., 2.}, {3., -1.}, {2., 1.}};
 
 	std::vector<Vector<double>> u = {e1, e2, e3};
 	std::vector<double>			coefs = {10., -2., 0.5};

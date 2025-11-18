@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:14:06 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/04 10:31:09 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:24:21 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,9 @@ int	main( void )
 	std::cout << u << std::endl << u.transpose() << std::endl;
 	Matrix<double>	u1{{1., 2., 3.}, {4., 5., 6.}};
 	std::cout << u1 << std::endl << u1.transpose();
+	Matrix<Complex>	A4({ {{1, 2}, {-1, -2}, {0, 3}},
+						{{2, -1}, {2, 1}, {1, -4}},
+						{{-5, 1}, {1.5, 0}, {-3.2, 1}} });
+	std::cout << A4 << std::endl << A4.transpose();
 	return 0;
 }
