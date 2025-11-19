@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 15:31:16 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/15 18:27:45 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 10:15:51 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ K	Vector<K>::dot( const Vector<K>& v ) const
 		if constexpr (std::is_arithmetic_v<K>)
 			result = std::fma(this->fields[i], v[i], result);
 		else
-			result += v[i].conj() * fields[i];
+			result += fields[i] * v[i].conj();
 	}
 	return (result);
 }

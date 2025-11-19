@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:27:58 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/18 19:26:20 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:41:04 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,12 @@ struct Complex
 		if (im == 0.0)
 			os << re;
 		else if (re == 0.0)
-			os << im << 'i';
+		{
+			if (im == 1)
+				os << 'i';
+			else
+				os << im << 'i';
+		}
 		else
 		{
 			if (im < 0)
@@ -129,3 +134,53 @@ struct Complex
 		return (os);
 	}
 };
+
+double	complex_absolute( const Complex& z )
+{
+	double	real_sq = z.Re * z.Re;
+	double	imag_sq = z.Im * z.Im;
+
+	return (std::pow(real_sq + imag_sq, 0.5));
+}
+
+template<typename T>
+T	custom_abs( T a )
+{
+	return a >= 0 ? a : -a;
+}
+
+template<typename K>
+double	scalar_abs( const K& x )
+{
+	if constexpr (std::is_arithmetic_v<K>)
+		return (x < K(0) ? -static_cast<double>(x) : static_cast<double>(x));
+	else
+		return (complex_absolute(x));
+}
+
+double	scalar_norm2( const double& x )
+{
+	return (x * x);
+}
+
+double	scalar_norm2( const float& x )
+{
+	return (x * x);
+}
+
+double	scalar_norm2( const Complex& z )
+{
+	return (z.Re * z.Re + z.Im * z.Im);
+}
+
+template<typename K>
+double	scalar_norm2( const K& x )
+{
+	return (static_cast<double>(x) * static_cast<double>(x));
+}
+
+template<typename K>
+bool	scalar_is_zero( const K& x, double eps = 1e-9 )
+{
+	return (scalar_norm2(x) < eps * eps);
+}

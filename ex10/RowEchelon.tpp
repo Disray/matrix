@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:13:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/18 19:23:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:19:10 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,6 @@
 #include "../Matrix.hpp"
 #include "../ex05/AngleCos.tpp"
 #include "../ex04/Norm.tpp"
-
-double	scalar_norm2( const double& x )
-{
-	return (x * x);
-}
-
-double	scalar_norm2( const float& x )
-{
-	return (x * x);
-}
-
-double	scalar_norm2( const Complex& z )
-{
-	return (z.Re * z.Re + z.Im * z.Im);
-}
-
-template<typename K>
-double	scalar_norm2( const K& x )
-{
-	return (static_cast<double>(x) * static_cast<double>(x));
-}
-
-template<typename K>
-bool	scalar_is_zero( const K& x, double eps = 1e-9 )
-{
-	return (scalar_norm2(x) < eps * eps);
-}
 
 template<is_arithmetic K>
 Matrix<K>	Matrix<K>::row_echelon()
