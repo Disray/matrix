@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:39:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/07 14:52:45 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:02:33 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,12 @@ int	main( void )
 		{21., 18., 7.}
 	});
 	std::cout << u3.rank() << std::endl; // 3
+
+	Matrix<Complex> c1({
+		{ {1, 2}, {2, 0} },
+		{ {2, 0}, {4, -1} }
+	});
+	std::cout << c1.rank() << std::endl; // 2
+
 	return (0);
 }

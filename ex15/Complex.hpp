@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:27:58 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 14:08:02 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:59:57 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,45 +103,45 @@ struct Complex
 	{
 		return (this->Re == other.Re && this->Im == other.Im);
 	}
+};
 
-	friend std::ostream&	operator<<( std::ostream& os, const Complex& z )
+std::ostream&	operator<<( std::ostream& os, const Complex& z )
+{
+	constexpr double eps = 1e-9;
+
+	auto near = [&](double x, double target)
 	{
-		constexpr double eps = 1e-9;
+		return (std::abs(x - target) < eps);
+	};
+	double re = z.Re;
+	double im = z.Im;
 
-		auto near = [&](double x, double target)
-		{
-			return (std::abs(x - target) < eps);
-		};
-		double re = z.Re;
-		double im = z.Im;
-
-		if (std::abs(im) < eps)
-		{
-			os << re;
-			return (os);
-		}
-		if (std::abs(re) < eps)
-		{
-			if (near(im, 1))
-				os << "i";
-			else if (near(im, -1))
-				os << "-i";
-			else
-				os << im << "i";
-			return (os);
-		}
-		os << re << " ";
-		if (near(im, 1))
-			os << "+ i";
-		else if (near(im, -1))
-			os << " - i";
-		else if (im > 0)
-			os << "+ " << im << "i";
-		else
-			os << "- " << -im << "i";
+	if (std::abs(im) < eps)
+	{
+		os << re;
 		return (os);
 	}
-};
+	if (std::abs(re) < eps)
+	{
+		if (near(im, 1))
+			os << "i";
+		else if (near(im, -1))
+			os << "-i";
+		else
+			os << im << "i";
+		return (os);
+	}
+	os << re << " ";
+	if (near(im, 1))
+		os << "+ i";
+	else if (near(im, -1))
+		os << " - i";
+	else if (im > 0)
+		os << "+ " << im << "i";
+	else
+		os << "- " << -im << "i";
+	return (os);
+}
 
 double	complex_absolute( const Complex& z )
 {
