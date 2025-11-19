@@ -6,14 +6,14 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:57:17 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/06 18:03:17 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:43:13 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Inverse.tpp"
 
 template<typename K>
-void testInverse(const char* name, const Matrix<K>& M)
+void testInverse( const char* name, const Matrix<K>& M )
 {
     auto inv = M.inverse();
     std::cout << name << ":\n";
@@ -29,7 +29,7 @@ void testInverse(const char* name, const Matrix<K>& M)
     std::cout << "----\n";
 }
 
-int main()
+int main( void )
 {
     std::cout << std::fixed << std::setprecision(6);
 
@@ -89,6 +89,12 @@ int main()
         {2., 4.}
     };
 
+	Matrix<Complex>	z = {
+		{{2, 2}, {0, 0}, {0, 0}},
+		{{0, 0}, {2, 2}, {0, 0}},
+		{{0, 0}, {0, 0}, {2, 2}},
+	};
+	
     testInverse("diag3", diag3);
     testInverse("m1", m1);
     testInverse("I2", I2);
@@ -98,6 +104,7 @@ int main()
     testInverse("Int3", Int3);
     testInverse("Perm3", Perm3);
     testInverse("Sing2 (should fail)", Sing2);
+	testInverse("Complex1", z);
 
     return 0;
 }
