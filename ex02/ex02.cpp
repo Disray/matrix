@@ -6,11 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:28:32 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/15 19:04:24 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:21:54 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LinearInterpolation.tpp"
+#include "../Vector.hpp"
+#include "../Matrix.hpp"
 
 int main( void )
 {

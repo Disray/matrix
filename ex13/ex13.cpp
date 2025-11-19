@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:39:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 15:02:33 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:35:19 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Rank.tpp"
+#include "../Matrix.hpp"
 
 int	main( void )
 {

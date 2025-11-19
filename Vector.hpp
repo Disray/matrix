@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:02 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/17 11:18:44 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:55:10 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ struct is_complex<Complex> : std::true_type {};
 
 template<typename K>
 concept is_arithmetic = std::is_arithmetic_v<K> || is_complex<K>::value;
+
+template<is_arithmetic K>
+class Matrix;
 
 template<is_arithmetic K>
 class Vector
@@ -66,9 +69,29 @@ class Vector
 		double					norm_inf() const;
 };
 
+template<is_arithmetic K>
+Vector<K>	linear_combination( std::initializer_list<Vector<K>> u, std::initializer_list<K> coefs );
+template<is_arithmetic K>
+Vector<K>	linear_combination( const std::vector<Vector<K>>& u, const std::vector<K>& coefs );
+template<is_arithmetic K>
+K			lerp( K a, K b, double t );
+template<is_arithmetic K>
+Vector<K>	lerp( const Vector<K>& u, const Vector<K>& v, double t );
+template<is_arithmetic K>
+Matrix<K>	lerp( const Matrix<K>& u, const Matrix<K>& v, double t );
+template<is_arithmetic K>
+auto		angle_cos( const Vector<K>& u, const Vector<K>& v );
+template<is_arithmetic K>
+Vector<K>	cross_product( const Vector<K>& u, const Vector<K>& v );
+
+
 #include "Vector.tpp"
 #include "./ex00/VAddSubScl.tpp"
+#include "./ex01/LinearCombination.tpp"
+#include "./ex02/LinearInterpolation.tpp"
 #include "./ex03/Dot.tpp"
 #include "./ex04/Norm.tpp"
+#include "./ex05/AngleCos.tpp"
+#include "./ex06/CrossProduct.tpp"
 
 #endif // VECTOR_HPP

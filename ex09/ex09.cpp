@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:14:06 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/17 16:24:21 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:34:21 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Transpose.tpp"
+#include "../Matrix.hpp"
 
 int	main( void )
 {

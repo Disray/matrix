@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:38:21 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/17 16:22:15 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:34:11 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Trace.tpp"
+#include "../Matrix.hpp"
 
 int main( void )
 {

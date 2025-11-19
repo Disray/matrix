@@ -6,11 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:47:57 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/17 15:57:09 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:33:51 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Multiply.tpp"
+#include "../Matrix.hpp"
+#include "../Vector.hpp"
 
 int main( void )
 {

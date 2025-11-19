@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:51:26 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 11:41:02 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:35:00 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Determinant.tpp"
+#include "../Matrix.hpp"
 
 int	main( void )
 {

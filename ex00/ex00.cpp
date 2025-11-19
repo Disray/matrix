@@ -6,12 +6,12 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:18:21 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/15 18:51:29 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:15:27 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "VAddSubScl.tpp"
-#include "MAddSubScl.tpp"
+#include "../Vector.hpp"
+#include "../Matrix.hpp"
 
 int main( void )
 {

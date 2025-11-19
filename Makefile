@@ -8,7 +8,21 @@ CXXFLAGS	:= -Werror -Wall -Wextra -std=c++23
 BIN_DIR		:= bin
 OBJ_DIR		:= .obj
 
-EX_DIRS		:= $(patsubst %/,%,$(filter ex%/,$(wildcard ex*/)))
+EX_DIRS		:=	ex00 \
+				ex01 \
+				ex02 \
+				ex03 \
+				ex04 \
+				ex05 \
+				ex06 \
+				ex07 \
+				ex08 \
+				ex09 \
+				ex10 \
+				ex11 \
+				ex12 \
+				ex13 \
+				ex14 \
 
 ################################################################################
 #                                    COlORS                                    #
@@ -49,8 +63,8 @@ COM_STRING   = "Compiling"
 all: $(EX_DIRS)
 
 define GEN_RULES
-SRCS_$(1) := $(wildcard $(1)/*.cpp)
-OBJS_$(1) := $$(patsubst $(1)/%.cpp, $(OBJ_DIR)/$(1)/%.o, $$(SRCS_$(1)))
+SRCS_$(1) := $(1)/$(1).cpp
+OBJS_$(1) := $(OBJ_DIR)/$(1)/$(1).o
 
 $(1): $(BIN_DIR)/$(1)
 

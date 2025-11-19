@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:39:21 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:40:29 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ class Matrix
 		size_t					rank();
 };
 
+template<is_arithmetic K>
+Matrix<K>	lerp( const Matrix<K>& u, const Matrix<K>& v, double t );
+
 #include "Matrix.tpp"
 #include "./ex00/MAddSubScl.tpp"
+#include "./ex02/LinearInterpolation.tpp"
 #include "./ex07/Multiply.tpp"
 #include "./ex08/Trace.tpp"
 #include "./ex09/Transpose.tpp"

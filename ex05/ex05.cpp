@@ -6,12 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:37:18 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/15 19:04:24 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:26:45 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Vector.hpp"
-#include "AngleCos.tpp"
 
 int	main( void )
 {

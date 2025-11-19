@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:31:11 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/18 19:28:13 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:34:42 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RowEchelon.tpp"
+#include "../Matrix.hpp"
 
 int	main( void )
 {
@@ -21,7 +21,7 @@ int	main( void )
 							{-2., 1., 2.}	};
 		Matrix<double>	u1{	{8., 5., -2., 4., 28.},
 							{4., 2.5, 20., 4., -4.},
-							{8., 5., 1., 4., 17.}	};
+							{8., 5., 1., 4., 17.} };
 		Matrix<double>	u2{	{1., 2.}, {2., 4.}	};
 		Matrix<double>	u3{	{1., 2.}, {3., 4.}	};
 		Matrix<Complex>	z{	{{1, 2}, {2, 1}, {1, 2}},

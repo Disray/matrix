@@ -6,11 +6,11 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:57:17 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 14:43:13 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:35:10 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Inverse.tpp"
+#include "../Matrix.hpp"
 
 template<typename K>
 void testInverse( const char* name, const Matrix<K>& M )
