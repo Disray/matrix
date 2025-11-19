@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:27:58 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 09:41:04 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:08:02 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ struct Complex
 		z.Im = (this->Im * other.Re - this->Re * other.Im) / (other.Re * other.Re + other.Im * other.Im);
 		return (z);
 	}
+	Complex	operator-() const
+	{
+		return (Complex(-Re, -Im));
+	}
 	Complex& operator+=( const Complex& other ) noexcept
 	{
 		Re += other.Re;
@@ -102,35 +106,39 @@ struct Complex
 
 	friend std::ostream&	operator<<( std::ostream& os, const Complex& z )
 	{
+		constexpr double eps = 1e-9;
+
+		auto near = [&](double x, double target)
+		{
+			return (std::abs(x - target) < eps);
+		};
 		double re = z.Re;
 		double im = z.Im;
 
-		if (im == 0.0)
+		if (std::abs(im) < eps)
+		{
 			os << re;
-		else if (re == 0.0)
-		{
-			if (im == 1)
-				os << 'i';
-			else
-				os << im << 'i';
+			return (os);
 		}
+		if (std::abs(re) < eps)
+		{
+			if (near(im, 1))
+				os << "i";
+			else if (near(im, -1))
+				os << "-i";
+			else
+				os << im << "i";
+			return (os);
+		}
+		os << re << " ";
+		if (near(im, 1))
+			os << "+ i";
+		else if (near(im, -1))
+			os << " - i";
+		else if (im > 0)
+			os << "+ " << im << "i";
 		else
-		{
-			if (im < 0)
-			{
-				if (im == -1)
-					os << re << " - " << 'i';
-				else
-					os << re << " - " << -im << 'i';
-			}
-			else
-			{
-				if (im == 1)
-					os << re << " + " << 'i';
-				else
-					os << re << " + " << im << 'i';
-			}
-		}
+			os << "- " << -im << "i";
 		return (os);
 	}
 };
