@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:04:07 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:26:25 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,32 @@ K	Matrix<K>::determinant()
 	
 	Matrix<K>	mat = *this;
 
-	K			det = K(1), total = K(1);
-	size_t		index;
+	K		det = K(1);
+	size_t	swaps = 0;
+	size_t	row = 0, col = 0, i_max;
 
-	for (size_t	i = 0; i < _rows; i++)
+	while (row < mat._rows && col < mat._cols)
 	{
-		index = i;
-		while (index < _rows && mat(index, i) == K(0))
-			index++;
-		if (index == _rows)
+		i_max = mat.findIndexMaxAbsColumn(col, row);
+		if (i_max == size_t(-1))
 			return (K(0));
-		if (index != i)
+		if (i_max != row)
 		{
-			mat.swap_rows(index, i);
-			det = -det;
+			mat.swap_rows(row, i_max);
+			swaps++;
 		}
-		const K pivot = mat(i, i);
-		for (size_t j = i + 1; j < _rows; j++)
+		K pivot = mat(row, col);
+		det *= pivot;
+		for (size_t i = row + 1; i < mat._rows; i++)
 		{
-			const K a = mat(j, i);
-			if (a == K(0))
-				continue ;
-			for (size_t k = i; k < _rows; k++)
-				mat(j, k) = (pivot * mat(j, k)) - (a * mat(i, k));
-			total *= pivot;
+			K scale = mat(i, col) / pivot;
+			for (size_t j = col; j < mat._cols; j++)
+				mat(i, j) -= scale * mat(row, j);
 		}
+		row++;
+		col++;
 	}
-	for (size_t i = 0; i < _rows; i++)
-		det *= mat(i, i);
-	return (det / total);
+	if (swaps % 2 != 0)
+		det = -det;
+	return (det);
 }
