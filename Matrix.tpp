@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 12:10:48 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 13:59:41 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:07:11 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Matrix<K>::Matrix( std::initializer_list<std::initializer_list<K>> values )
 template<is_arithmetic K>
 Matrix<K>::Matrix( size_t n )
 {
-	this->elements = std::vector<K>(n, K(0));
+	this->elements = std::vector<K>(n * n, K(0));
 	this->_rows = n;
 	this->_cols = n;
 }

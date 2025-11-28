@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 10:46:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:27:45 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,16 @@
 
 Matrix<float>	projection(  float fov, float ratio, float near, float far )
 {
-	// const float 	DEG2RAD = M_PI / 180;
-	// float			tangent = tan(fov / 2 * DEG2RAD);
-	// float			top = near * tangent;
-	// float			right = top * ratio;
+	float			tangent = std::tan(fov / 2.0f);
 
 	Matrix<float>	matrix(4);
 
-	// matrix[0] = near / right;
-	matrix(0, 0) = (1 / tan(fov / 2)) / ratio;
-	matrix(1, 1) = 1 / (tan(fov / 2));
-	// matrix[5] = near / top;
-	// matrix[10] = far / (far - near);
+	matrix(0, 0) = 1.0f / (ratio * tangent);
+	matrix(1, 1) = 1.0f / tangent;
 	matrix(2, 2) = far / (near - far);
-	matrix(2, 3) = -1.0f;
-	// matrix[11] = 1.0f;
-	matrix(3, 2) = near * far / (near - far);
-	matrix(3, 3) = 0;
+	matrix(2, 3) = (near * far) / (near - far);
+	matrix(3, 2) = -1.0f;
+	// matrix(3, 3) = 0;
 	return (matrix);
 }
 

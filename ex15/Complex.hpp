@@ -6,12 +6,13 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:27:58 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 14:59:57 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:21:42 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include <cmath>
 
 struct Complex
 {

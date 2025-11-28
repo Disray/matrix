@@ -3,7 +3,7 @@
 ################################################################################
 
 CXX			:= c++
-CXXFLAGS	:= -Werror -Wall -Wextra -std=c++23
+CXXFLAGS	:= -Werror -Wall -Wextra -std=c++20 -MMD -MP
 
 BIN_DIR		:= bin
 OBJ_DIR		:= .obj
@@ -23,6 +23,10 @@ EX_DIRS		:=	ex00 \
 				ex12 \
 				ex13 \
 				ex14 \
+
+################################################################################
+#                                 SOURCE FILES                                 #
+################################################################################
 
 ################################################################################
 #                                    COlORS                                    #
@@ -63,17 +67,19 @@ COM_STRING   = "Compiling"
 all: $(EX_DIRS)
 
 define GEN_RULES
-SRCS_$(1) := $(1)/$(1).cpp
-OBJS_$(1) := $(OBJ_DIR)/$(1)/$(1).o
+RAW_FILES_$(1) := $$(if $$(FILES_$(1)),$$(FILES_$(1)),$(1).cpp)
+SRCS_$(1) := $$(addprefix $(1)/,$$(RAW_FILES_$(1)))
+OBJS_$(1) := $$(addprefix $(OBJ_DIR)/$(1)/,$$(RAW_FILES_$(1):.cpp=.o))
+DEPS_$(1) := $$(OBJS_$(1):.o=.d)
+
+-include $$(DEPS_$(1))
 
 $(1): $(BIN_DIR)/$(1)
 
-# Link with colors
 $(BIN_DIR)/$(1): COM_STRING = Linking
 $(BIN_DIR)/$(1): $$(OBJS_$(1)) | $(BIN_DIR)
 	@$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -o $$@ $$^)
 
-# Compile with colors
 $(OBJ_DIR)/$(1)/%.o: COM_STRING = Compiling
 $(OBJ_DIR)/$(1)/%.o: $(1)/%.cpp | $(OBJ_DIR)/$(1)
 	@$$(call run_and_test,$$(CXX) $$(CXXFLAGS) -c $$< -o $$@)
@@ -82,7 +88,7 @@ $(OBJ_DIR)/$(1):
 	@mkdir -p $$@
 
 run-$(1): $(1)
-	@./$(BIN_DIR)/$(1)
+	@./$(BIN_DIR)/$(1) "$(ARGS)"
 
 clean-$(1): COM_STRING = Cleaning
 clean-$(1):

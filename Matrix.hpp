@@ -6,14 +6,14 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:28:09 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 15:40:29 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:31:13 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Vector.hpp"
 #include <sstream>
-#include <expected>
+#include <optional>
 
 template<is_arithmetic K>
 class Matrix
@@ -68,7 +68,7 @@ class Matrix
 		// ex11
 		K						determinant();
 		// ex12
-		std::expected<Matrix<K>, std::string>	inverse() const;
+		std::optional<Matrix<K>>	inverse() const;
 		Matrix<K>				identity();
 		// ex13
 		size_t					rank();

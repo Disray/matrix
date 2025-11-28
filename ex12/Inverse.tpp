@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:33:25 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 14:03:40 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:34:16 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../Matrix.hpp"
 
 template<is_arithmetic K>
-std::expected<Matrix<K>, std::string>	Matrix<K>::inverse() const
+std::optional<Matrix<K>>	Matrix<K>::inverse() const
 {
 	Matrix<K>			result = *this;
 	Matrix<K>			id = result.identity();
@@ -57,7 +57,7 @@ std::expected<Matrix<K>, std::string>	Matrix<K>::inverse() const
 		}
 	}
 	if (pivot_col.size() != result._cols)
-		return (std::unexpected(std::string("singular matrix")));
+		return (std::nullopt);
 	return (id);
 }
 

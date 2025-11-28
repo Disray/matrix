@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:57:17 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/19 15:35:10 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:48:16 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void testInverse( const char* name, const Matrix<K>& M )
         std::cout << *inv << "\n";
         // Optional quick check: M * inv ≈ I
         auto prod = M.mul_mat(*inv);
-        std::cout << "M * inv:\n" << prod << "\n";
+        std::cout << "M * inv:\n" << prod << std::endl;
     }
     else
-        std::cout << "Error: " << inv.error() << "\n";
-    std::cout << "----\n";
+        std::cout << "Error: Matrix is singular." << std::endl;
+    std::cout << "----" << std::endl;
 }
 
 int main( void )
