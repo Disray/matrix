@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AddSubScl.tpp                                      :+:      :+:    :+:   */
+/*   MAddSubScl.tpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:05:24 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/12 15:38:34 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:42:40 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	Matrix<K>::sub( const Matrix<K>& m )
 template<is_arithmetic K>
 void	Matrix<K>::scl( const K& scalar )
 {
-	for (auto& it : elements)
-		it *= scalar;
+	for (size_t i = 0; i < this->getSize(); i++)
+		this->elements[i] *= scalar;
 }
