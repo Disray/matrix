@@ -6,7 +6,7 @@
 /*   By: rrichard <rrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 10:46:20 by rrichard          #+#    #+#             */
-/*   Updated: 2025/11/28 15:27:45 by rrichard         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:58:02 by rrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ Matrix<float>	projection(  float fov, float ratio, float near, float far )
 	matrix(2, 2) = far / (near - far);
 	matrix(2, 3) = (near * far) / (near - far);
 	matrix(3, 2) = -1.0f;
-	// matrix(3, 3) = 0;
 	return (matrix);
 }
 
